@@ -29,7 +29,7 @@ import express, { Request, Response, NextFunction } from 'express';
         responseType: 'stream',
         headers: { Referer: 'https://mangafire.to/' },
       });
-      res.setHeader('Content-Type', response.headers['content-type'] || 'image/jpeg');
+      res.setHeader('Content-Type', String(response.headers['content-type'] || 'image/jpeg'));
       response.data.pipe(res);
     } catch { next(createHttpError(502, 'Failed to proxy image')); }
   });
